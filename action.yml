@@ -1,0 +1,65 @@
+name: Build UnrealEngine Game
+author: Paulo Godinho
+description: >
+  Builds an Unreal Engine Game, compatible with versions 5.0.x
+inputs:
+  engine-path: # id of input
+    description: "Location of Unreal Engine source files"
+    required: true
+    default: "C:/UnrealEngine"
+  uproject-path:
+    description: "Location of game .uproject file"
+    required: true
+    default: "C:/UnrealEngine"
+  target-platform:
+    description: "Target Platform to build for"
+    required: true
+    default: Win64
+  use-default-args:
+    type: boolean
+    description: "Use the action default BuildCookRun args on this actions"
+    required: false
+    default: true
+  extra-args:
+    description: "Extra Args to be passed to BuildCookRun, separated by spaces"
+  skip-build:
+    type: boolean
+    description: "Skip Build Step"
+    required: false
+    default: false
+  skip-cook:
+    type: boolean
+    description: "Skip Cook Step"
+    required: false
+    default: false
+  skip-pak-and-stage:
+    type: boolean
+    description: "Skip Package and Stage Step"
+    required: false
+    default: false
+  skip-archive:
+    type: boolean
+    description: "Skip Archive Step"
+    required: false
+    default: false
+runs:
+  using: composite
+  steps:
+    - run: |
+        ${{ github.action_path }}/src/Build.ps1
+        ${{ github.action_path }}/src/Cook.ps1
+        ${{ github.action_path }}/src/PakAndStage.ps1
+        ${{ github.action_path }}/src/Archive.ps1
+      shell: pwsh
+      env:
+        ENGINE_PATH: ${{ inputs.engine-path }}
+        UPROJECT_PATH: ${{ inputs.uproject-path }}
+        TARGET_PLATFORM: ${{ inputs.target-platform }}
+        USE_DEFAULT_ARGS: ${{ inputs.use-default-args }}
+        EXTRA_ARGS: ${{ inputs.extra-args }}
+        CLIENT_CONFIG: "Development"
+        SKIP_BUILD: ${{ inputs.skip-build }}
+        SKIP_COOK: ${{ inputs.skip-cook }}
+        SKIP_PAKANDSTAGE: ${{ inputs.skip-pak-and-stage }}
+        SKIP_ARCHIVE: ${{ inputs.skip-archive }}
+    

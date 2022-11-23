@@ -1,0 +1,21 @@
+name: Test Build Unreal Engine Game Action
+run-name: Test paulogodinho-actions/build-unreal-engine-game, Triggered by @${{ github.actor }}
+on:
+  workflow_dispatch:
+
+jobs:
+  call-build-action:
+    name: Build Unreal Engine Game
+    runs-on: unreal-builder
+    steps:
+      - id: call-action
+        uses: paulogodinho-actions/build-unreal-engine-game@main
+        with:
+          engine-path: "C:/UnrealEngine_update_Epic5.0.2"
+          uproject-path: "C:/TestProject/TestProject.uproject"
+          target-platform: "Win64"
+          extra-args: "-CookCultures=ar+zh-Hans+zh-Hant+nl+en-AU -distribution"
+          skip-build: false
+          skip-cook: false
+          skip-pak-and-stage: false
+          skip-archive: false
