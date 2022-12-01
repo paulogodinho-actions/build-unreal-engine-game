@@ -9,9 +9,6 @@ if($shouldSkip -eq $true) {
 }
 
 $parameters = @(
-    "-skipcook",
-    "-skipstage",
-    "-skippak",
     "-build"
 )
 
