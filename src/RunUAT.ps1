@@ -21,4 +21,8 @@ $uatArgs = @(
 
 $uatBat = "$enginePath/Engine/Build/BatchFiles/RunUAT.bat"
 Write-Output "Invoking RunUAT.bat BuildCookRun from $uatBat with args: $uatArgs"
-& $uatBat $uatArgs $splitedExtraArgs
+& $uatBat $uatArgs $splitedExtraArgs | Tee-Object -Variable uatOutput
+
+if($uatOutput.Contains("ExitCode=0") -eq $false) {
+    throw "UAT returned non-zero ExitCode"
+}
