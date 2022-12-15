@@ -14,8 +14,7 @@ $uatArgs = @(
     "BuildCookRun",
     "-project=$uProjectPath",
     "-targetplatform=$targetPlatform",
-    "-clientconfig=$buildConfiguration"
-    "-buildmachine",
+    "-clientconfig=$buildConfiguration",
     "-noP4"
 ) + $Parameters + $splitedExtraArgs
 
