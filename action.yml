@@ -15,11 +15,6 @@ inputs:
     description: "Target Platform to build for"
     required: true
     default: Win64
-  use-default-args:
-    type: boolean
-    description: "Use the action default BuildCookRun args on this actions"
-    required: false
-    default: true
   extra-args:
     description: "Extra Args to be passed to BuildCookRun, separated by spaces"
   skip-build:
@@ -55,7 +50,6 @@ runs:
         ENGINE_PATH: ${{ inputs.engine-path }}
         UPROJECT_PATH: ${{ inputs.uproject-path }}
         TARGET_PLATFORM: ${{ inputs.target-platform }}
-        USE_DEFAULT_ARGS: ${{ inputs.use-default-args }}
         EXTRA_ARGS: ${{ inputs.extra-args }}
         CLIENT_CONFIG: "Development"
         SKIP_BUILD: ${{ inputs.skip-build }}
