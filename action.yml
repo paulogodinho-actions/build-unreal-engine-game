@@ -41,6 +41,7 @@ runs:
   using: composite
   steps:
     - run: |
+        $ErrorActionPreference = 'Stop'
         ${{ github.action_path }}/src/Build.ps1
         ${{ github.action_path }}/src/Cook.ps1
         ${{ github.action_path }}/src/PakAndStage.ps1
