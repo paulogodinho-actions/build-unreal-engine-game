@@ -6,15 +6,18 @@ inputs:
   engine-path: # id of input
     description: "Location of Unreal Engine source files"
     required: true
-    default: "C:/UnrealEngine"
   uproject-path:
     description: "Location of game .uproject file"
     required: true
-    default: "C:/UnrealEngine"
   target-platform:
     description: "Target Platform to build for"
     required: true
-    default: Win64
+  client-config:
+    description: "CLient Cofing, eg: Development or Shipping"
+    required: true
+  archive-directory:
+    description: "Archive step output folder"
+    required: true
   extra-args:
     description: "Extra Args to be passed to BuildCookRun, separated by spaces"
   skip-build:
@@ -52,9 +55,9 @@ runs:
         UPROJECT_PATH: ${{ inputs.uproject-path }}
         TARGET_PLATFORM: ${{ inputs.target-platform }}
         EXTRA_ARGS: ${{ inputs.extra-args }}
-        CLIENT_CONFIG: "Development"
+        CLIENT_CONFIG: ${{ inputs.client-config }}
+        ARCHIVE_DIRECTORY: ${{ inputs.archive-directory }}
         SKIP_BUILD: ${{ inputs.skip-build }}
         SKIP_COOK: ${{ inputs.skip-cook }}
         SKIP_PAKANDSTAGE: ${{ inputs.skip-pak-and-stage }}
         SKIP_ARCHIVE: ${{ inputs.skip-archive }}
-    

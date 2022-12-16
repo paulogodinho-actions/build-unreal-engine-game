@@ -9,12 +9,14 @@ $targetPlatform = $Env:TARGET_PLATFORM
 $extraArgs = $Env:EXTRA_ARGS
 $splitedExtraArgs = $extraArgs.Split(' ')
 $buildConfiguration = $Env:CLIENT_CONFIG
+$archiveDirectory = $Env:ARCHIVE_DIRECTORY
 
 $uatArgs = @(
     "BuildCookRun",
     "-project=$uProjectPath",
     "-targetplatform=$targetPlatform",
     "-clientconfig=$buildConfiguration",
+    "-archivedirectory=$archiveDirectory"
     "-noP4"
 ) + $Parameters + $splitedExtraArgs
 
