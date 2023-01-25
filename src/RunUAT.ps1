@@ -15,6 +15,7 @@ $uatArgs = @(
     "-project=$uProjectPath",
     "-targetplatform=$targetPlatform",
     "-clientconfig=$buildConfiguration",
+    "-package",
     "-noP4"
 ) + $Parameters + $splitedExtraArgs
 
