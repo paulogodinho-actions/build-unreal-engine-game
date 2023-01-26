@@ -12,7 +12,8 @@ $parameters = @(
     "-skipcook",
     "-stage",
     "-pak",
-    "-skipbuild"
+    "-skipbuild",
+    "-package"
 )
 
 & "$PSScriptRoot/RunUAT.ps1" -Parameters $parameters
